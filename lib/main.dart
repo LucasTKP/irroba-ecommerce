@@ -1,17 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
+import 'package:my_app/presenters/home/home_screen.dart';
 
-void main() => runApp(const Banco());
+void main() => runApp(const MyApp());
 
-class Banco extends StatelessWidget {
-  const Banco({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: ListaTransferencia(),
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Home(),
     );
   }
 }
