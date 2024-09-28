@@ -62,9 +62,11 @@ class RegisterTransfer extends StatelessWidget {
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green,
-                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 8),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 32, vertical: 8),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8), // Borda menos arredondada
+                    borderRadius:
+                        BorderRadius.circular(8), // Borda menos arredondada
                   ),
                 ),
                 child: const Text(

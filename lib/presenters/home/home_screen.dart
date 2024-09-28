@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/controllers/contact_controller.dart';
 import 'package:my_app/controllers/transfer_controller.dart';
+import 'package:my_app/presenters/contact/contact_screen.dart';
 import 'package:my_app/presenters/transfer/tranfers_screen.dart';
 
 class Home extends StatefulWidget {
@@ -11,6 +13,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final TransferControllerImpl transferController = TransferControllerImpl();
+  final ContactControllerImpl contactController = ContactControllerImpl();
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +29,13 @@ class _HomeState extends State<Home> {
           children: [
             InkWell(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) =>  TransferScreen(controller: transferController),),);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        TransferScreen(controller: transferController),
+                  ),
+                );
               },
               child: Container(
                 padding: const EdgeInsets.all(16),
@@ -51,7 +60,13 @@ class _HomeState extends State<Home> {
             // Área clicável de Contatos
             InkWell(
               onTap: () {
-                // Ação para a tela de contatos
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        ContactScreen(controller: contactController),
+                  ),
+                );
               },
               child: Container(
                 padding: const EdgeInsets.all(16),
