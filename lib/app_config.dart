@@ -2,6 +2,7 @@ import 'package:irroba/core/injections/dependencies.dart';
 import 'package:irroba/interfaces/home/home_presenter.dart';
 import 'package:flutter/material.dart';
 
+final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -10,14 +11,24 @@ class MyApp extends StatelessWidget {
     return MediaQuery(
       data: MediaQuery.of(context).copyWith(textScaler: TextScaler.noScaling),
       child: MaterialApp(
+        navigatorObservers: [routeObserver],
         title: 'Irroba',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           scaffoldBackgroundColor: const Color(0xFFFAFAF9),
           fontFamily: 'Poppins',
-          appBarTheme: const AppBarTheme(backgroundColor: Color(0xFFDC2626)),
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Color(0xFFDC2626),
+            titleTextStyle: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
+            ),
+            actionsIconTheme: IconThemeData(color: Colors.white),
+            iconTheme: IconThemeData(color: Colors.white),
+          ),
           extensions: const [
-            CustomTheme(primary: Color(0xFFDC2626), secondary: Color(0xFF4F8E04)),
+            CustomTheme(primary: Color(0xFFDC2626), secondary: Color(0xFFECECEC)),
           ],
         ),
         home: const InjectionPage(

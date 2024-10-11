@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:irroba/app_config.dart';
+import 'package:irroba/core/models/category.dart';
 import 'package:irroba/interfaces/home/home_controller.dart';
+import 'package:irroba/interfaces/menu/menu.dart';
 import 'package:irroba/interfaces/widgets/box_products.dart';
 import 'package:irroba/interfaces/widgets/inputs.dart';
 
@@ -11,7 +13,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<CustomTheme>();
-
+    final products = controller.filterProducts();
     return SingleChildScrollView(
       padding: const EdgeInsets.only(bottom: 20),
       child: Column(
@@ -19,17 +21,34 @@ class HomeScreen extends StatelessWidget {
         children: [
           Container(
             color: theme?.primary ?? Colors.red,
-            padding: const EdgeInsets.only(top: 10, bottom: 20, left: 20, right: 20),
-            child: CustomInputs.search(
-              prefixIcon: IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.search),
+            padding: const EdgeInsets.only(top: 10, bottom: 20, left: 20, right: 10),
+            child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              Expanded(
+                child: CustomInputs.search(
+                  prefixIcon: IconButton(
+                    onPressed: () {
+                      controller.onTapSearch();
+                    },
+                    icon: const Icon(Icons.search),
+                  ),
+                  label: 'Pesquisar Produto',
+                  controller: controller.searchController,
+                ),
               ),
-              label: 'Pesquisar Produto',
-              controller: controller.searchController,
-            ),
+              const SizedBox(width: 10),
+              IconButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const MenuScreen(),
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.menu, color: Colors.white, size: 30),
+              ),
+            ]),
           ),
-
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
@@ -41,6 +60,29 @@ class HomeScreen extends StatelessWidget {
                   'Day2Day',
                   style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
                 ),
+                const SizedBox(height: 10),
+                const Text(
+                  'Categorias',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                DropdownButton<CategoryModel>(
+                  isExpanded: true,
+                  hint: const Text('Selecione uma categoria'),
+                  value: controller.selectedCategory,
+                  items: controller.categories.map<DropdownMenuItem<CategoryModel>>((CategoryModel category) {
+                    return DropdownMenuItem<CategoryModel>(
+                      value: category,
+                      child: Text(category.name),
+                    );
+                  }).toList(),
+                  onChanged: (CategoryModel? category) {
+                    controller.setSelectedCategory(category);
+                  },
+                ),
                 const SizedBox(height: 20),
                 GridView.builder(
                   physics: const NeverScrollableScrollPhysics(),
@@ -49,12 +91,12 @@ class HomeScreen extends StatelessWidget {
                     crossAxisCount: 2,
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 10,
-                    childAspectRatio: 0.53,
+                    mainAxisExtent: 330,
                   ),
                   padding: EdgeInsets.zero,
-                  itemCount: controller.products.length,
+                  itemCount: products.length,
                   itemBuilder: (context, index) {
-                    final product = controller.products[index];
+                    final product = products[index];
                     return BoxProducts.standard(
                       imageUrl: product.image,
                       title: product.title,

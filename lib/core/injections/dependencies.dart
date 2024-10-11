@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:irroba/core/libs/dio_config.dart';
+import 'package:irroba/core/repositories/categories_repository.dart';
 import 'package:irroba/core/repositories/products_repository.dart';
+import 'package:irroba/core/services/categories_service.dart';
 import 'package:irroba/core/services/products_service.dart';
+import 'package:irroba/core/utils/snack_bar_service.dart';
 
 class Dependencies {
   static Dependencies? _instance;
@@ -24,6 +27,8 @@ class Dependencies {
 }
 
 Future<bool> setupDependencies(BuildContext context) async {
+  Dependencies.instance.add<SnackBarService>(SnackBarServiceImpl());
+
   final dioConfig = DioConfig();
   Dependencies.instance.add<DioConfig>(dioConfig);
 
@@ -31,6 +36,11 @@ Future<bool> setupDependencies(BuildContext context) async {
   Dependencies.instance.add<ProductsService>(productsService);
 
   Dependencies.instance.add<ProductsRepository>(ProductsRepositoryImpl(service: productsService));
+
+  final categoriesService = CategoriesServiceImpl(dio: dioConfig.dio);
+  Dependencies.instance.add<CategoriesService>(categoriesService);
+
+  Dependencies.instance.add<CategoriesRepository>(CategoriesRepositoryImpl(service: categoriesService));
 
   return true;
 }
