@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:irroba/interfaces/home/home_presenter.dart';
 import 'package:irroba/interfaces/register_product/register_product_presenter.dart';
+import 'package:irroba/interfaces/register_user/register_user_presenter.dart';
 import 'package:irroba/interfaces/widgets/box_option_menu.dart';
 
 class MenuScreen extends StatelessWidget {
@@ -47,7 +48,7 @@ class MenuScreen extends StatelessWidget {
             boxOptionMenu(
               context: context,
               onPressedButton: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePresenter()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterUserPresenter()));
               },
               icon: Icons.person_add,
               label: 'Criar usuário',

@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:irroba/core/models/product.dart';
 import 'package:irroba/core/services/products_service.dart';
-import 'package:irroba/interfaces/register_product/dto/register_product_dto.dart';
+import 'package:irroba/interfaces/register_product/register_product_dto.dart';
 
 abstract class ProductsRepository {
   Future<List<ProductModel>> findAll();

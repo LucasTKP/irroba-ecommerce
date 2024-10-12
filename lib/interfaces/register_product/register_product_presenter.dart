@@ -44,6 +44,13 @@ class _RegisterProductPresenterState extends State<RegisterProductPresenter> {
       appBar: AppBar(
         title: const Text('Cadastrar produto'),
         titleSpacing: 20,
+        centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
       body: AnimatedBuilder(
         animation: controller,

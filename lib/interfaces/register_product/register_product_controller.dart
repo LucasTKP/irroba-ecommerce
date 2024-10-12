@@ -4,7 +4,7 @@ import 'package:irroba/core/models/category.dart';
 import 'package:irroba/core/repositories/categories_repository.dart';
 import 'package:irroba/core/repositories/products_repository.dart';
 import 'package:irroba/core/utils/identify_error.dart';
-import 'package:irroba/interfaces/register_product/dto/register_product_dto.dart';
+import 'package:irroba/interfaces/register_product/register_product_dto.dart';
 
 abstract class RegisterProductController extends ChangeNotifier {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -69,8 +69,9 @@ class RegisterProductControllerImpl extends RegisterProductController {
         }
       } catch (error) {
         onSnackBarService(identifyError(error: error, message: 'Erro ao registrar o produto'), Colors.red);
+      } finally {
+        setState(AsyncState.initial);
       }
-      setState(AsyncState.initial);
     }
   }
 

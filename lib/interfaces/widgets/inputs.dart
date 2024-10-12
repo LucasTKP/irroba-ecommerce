@@ -6,10 +6,12 @@ class CustomInputs {
     required Color theme,
     required TextEditingController controller,
     required String label,
-    required String? Function(String?)? validator,
+    required String? Function(String?) validator,
     TextInputType keyboardType = TextInputType.text,
     List<TextInputFormatter> inputFormatters = const [],
-    required Icon? prefixIcon,
+    required Icon prefixIcon,
+    IconButton? suffixIcon,
+    bool obscureText = false,
   }) {
     return Column(
       children: [
@@ -18,10 +20,12 @@ class CustomInputs {
           keyboardType: keyboardType,
           inputFormatters: inputFormatters,
           validator: validator,
+          obscureText: obscureText,
           cursorColor: Colors.black,
           style: const TextStyle(color: Colors.black, fontSize: 18),
           decoration: InputDecoration(
             prefixIcon: prefixIcon,
+            suffixIcon: suffixIcon,
             label: Text(label, style: const TextStyle(color: Colors.black, fontSize: 16)),
             labelStyle: const TextStyle(color: Colors.black),
             contentPadding: const EdgeInsets.symmetric(horizontal: 20),

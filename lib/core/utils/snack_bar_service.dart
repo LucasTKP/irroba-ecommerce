@@ -10,7 +10,7 @@ class SnackBarServiceImpl implements SnackBarService {
     final snackBar = SnackBar(
       content: Text(message),
       backgroundColor: color,
-      duration: const Duration(milliseconds: 2000),
+      duration: const Duration(milliseconds: 3000),
     );
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
