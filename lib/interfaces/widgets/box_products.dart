@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:irroba/core/extensions/double.dart';
+import 'package:irroba/core/models/product.dart';
 
 class BoxProducts {
   static Widget standard({
@@ -56,7 +58,7 @@ class BoxProducts {
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      'R\$${price.toStringAsFixed(2)}',
+                      price.formatToCurrency(),
                       style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -88,6 +90,92 @@ class BoxProducts {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  static Widget stock({
+    required ProductModel product,
+  }) {
+    return Card(
+      elevation: 3,
+      color: const Color.fromARGB(255, 255, 240, 239),
+      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(8),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.network(
+                product.image,
+                height: 80,
+                width: 80, 
+                fit: BoxFit.cover,
+              ),
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    product.title,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Category: ${product.category}',
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: Colors.grey,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 4),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        product.price.formatToCurrency(),
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.green,
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Icon(Icons.star, color: Colors.yellow[700], size: 16),
+                          const SizedBox(width: 4),
+                          Text(
+                            product.rating.rate.toString(),
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            '(${product.rating.count})',
+                            style: const TextStyle(fontSize: 10, color: Colors.grey),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
