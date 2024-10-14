@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:irroba/app_config.dart';
-import 'package:irroba/interfaces/register_user/register_user_controller.dart';
+import 'package:irroba/interfaces/edit_user/edit_user_controller.dart';
 import 'package:irroba/interfaces/widgets/inputs.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class StepOne extends StatelessWidget {
-  final RegisterUserController controller;
+  final EditUserController controller;
   const StepOne({super.key, required this.controller});
 
   @override

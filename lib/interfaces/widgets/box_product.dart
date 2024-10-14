@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:irroba/core/extensions/double.dart';
 import 'package:irroba/core/models/product.dart';
 
-class BoxProducts {
+class BoxProduct {
   static Widget standard({
     required String imageUrl,
     required String title,
@@ -112,11 +112,16 @@ class BoxProducts {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
-              child: Image.network(
-                product.image,
+              child: CachedNetworkImage(
+                progressIndicatorBuilder: (context, url, progress) => Center(
+                  child: CircularProgressIndicator(
+                    value: progress.progress,
+                    color: Colors.red,
+                  ),
+                ),
                 height: 80,
-                width: 80, 
-                fit: BoxFit.cover,
+                width: 80,
+                imageUrl: product.image,
               ),
             ),
             const SizedBox(width: 10),

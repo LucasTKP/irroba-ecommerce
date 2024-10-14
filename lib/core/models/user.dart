@@ -30,6 +30,18 @@ class UserModel {
     );
   }
 
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
+      id: json['id'].toString(),
+      email: json['email'] as String,
+      username: json['username'] as String,
+      password: json['password'] as String,
+      name: NameModel.fromMap(json['name'] as Map<String, dynamic>),
+      address: AddressModel.fromMap(json['address'] as Map<String, dynamic>),
+      phone: json['phone'] as String,
+    );
+  }
+
   @override
   String toString() {
     return 'RegisterUserDto(email: $email, username: $username, password: $password, name: $name, address: $address, phone: $phone)';
@@ -47,8 +59,8 @@ class NameModel {
 
   factory NameModel.fromMap(Map<String, dynamic> map) {
     return NameModel(
-      firstName: map['firstName'] as String,
-      lastName: map['lastName'] as String,
+      firstName: map['firstname'] as String,
+      lastName: map['lastname'] as String,
     );
   }
 

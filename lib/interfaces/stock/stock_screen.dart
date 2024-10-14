@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:irroba/interfaces/stock/stock_controller.dart';
-import 'package:irroba/interfaces/widgets/box_products.dart';
+import 'package:irroba/interfaces/widgets/box_product.dart';
 
 class StockScreen extends StatelessWidget {
   final StockController controller;
@@ -23,7 +23,7 @@ class StockScreen extends StatelessWidget {
             children: List.generate(
               controller.products.length,
               (index) {
-                return BoxProducts.stock(product: controller.products[index]);
+                return BoxProduct.stock(product: controller.products[index]);
               },
             ),
           ),

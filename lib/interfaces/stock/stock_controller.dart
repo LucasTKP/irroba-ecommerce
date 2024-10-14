@@ -25,7 +25,7 @@ class StockControllerImpl extends StockController {
   void getAllProducts() async {
     try {
       setState(AsyncState.loading);
-      final response = await productsRepository.findAll();
+      final response = await productsRepository.findAll(sort: true);
       products = response;
     } catch (error) {
       log(error.toString());

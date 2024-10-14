@@ -3,7 +3,7 @@ import 'package:irroba/app_config.dart';
 import 'package:irroba/core/models/category.dart';
 import 'package:irroba/interfaces/home/home_controller.dart';
 import 'package:irroba/interfaces/menu/menu.dart';
-import 'package:irroba/interfaces/widgets/box_products.dart';
+import 'package:irroba/interfaces/widgets/box_product.dart';
 import 'package:irroba/interfaces/widgets/inputs.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -97,7 +97,7 @@ class HomeScreen extends StatelessWidget {
                   itemCount: products.length,
                   itemBuilder: (context, index) {
                     final product = products[index];
-                    return BoxProducts.standard(
+                    return BoxProduct.standard(
                       imageUrl: product.image,
                       title: product.title,
                       price: product.price,

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:irroba/core/controllers/cart_controller.dart';
 import 'package:irroba/core/libs/dio_config.dart';
+import 'package:irroba/core/repositories/cart_repository.dart';
 import 'package:irroba/core/repositories/categories_repository.dart';
 import 'package:irroba/core/repositories/products_repository.dart';
 import 'package:irroba/core/repositories/users_repository.dart';
+import 'package:irroba/core/services/cart_service.dart';
 import 'package:irroba/core/services/categories_service.dart';
 import 'package:irroba/core/services/products_service.dart';
 import 'package:irroba/core/services/users_service.dart';
@@ -48,6 +51,11 @@ Future<bool> setupDependencies(BuildContext context) async {
   Dependencies.instance.add<UsersService>(userService);
 
   Dependencies.instance.add<UsersRepository>(UsersRepositoryImpl(service: userService));
+
+  final cartService = CartServiceImpl(dio: dioConfig.dio);
+  final cartRepository = CartRepositoryImpl(service: cartService);
+  final cartController = CartControllerImpl(cartRepository: cartRepository);
+  Dependencies.instance.add<CartController>(cartController);
 
   return true;
 }
