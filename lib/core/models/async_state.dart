@@ -2,7 +2,9 @@ enum AsyncState {
   initial,
   loading,
   success,
+  successDeleteCart,
   error,
+
   ;
 
   bool get isInitial => this == AsyncState.initial;

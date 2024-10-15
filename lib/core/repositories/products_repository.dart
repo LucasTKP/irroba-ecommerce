@@ -5,6 +5,7 @@ import 'package:irroba/interfaces/register_product/register_product_dto.dart';
 
 abstract class ProductsRepository {
   Future<List<ProductModel>> findAll({bool sort});
+  Future<ProductModel> findById(String id);
   Future<Response<dynamic>> create(RegisterProductDto product);
 }
 
@@ -24,9 +25,13 @@ class ProductsRepositoryImpl extends ProductsRepository {
   }
 
   @override
+  Future<ProductModel> findById(String id) async {
+    final response = await service.findById(id);
+    return ProductModel.fromJson(response.data);
+  }
+
+  @override
   Future<Response<dynamic>> create(RegisterProductDto product) async {
     return await service.create(product.toJson());
   }
 }
-
-

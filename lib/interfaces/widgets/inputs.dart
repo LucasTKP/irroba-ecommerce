@@ -9,7 +9,8 @@ class CustomInputs {
     required String? Function(String?) validator,
     TextInputType keyboardType = TextInputType.text,
     List<TextInputFormatter> inputFormatters = const [],
-    required Icon prefixIcon,
+    required Icon? prefixIcon,
+    String? prefixText,
     IconButton? suffixIcon,
     bool obscureText = false,
   }) {
@@ -24,7 +25,9 @@ class CustomInputs {
           cursorColor: Colors.black,
           style: const TextStyle(color: Colors.black, fontSize: 18),
           decoration: InputDecoration(
+            prefixText: prefixText,
             prefixIcon: prefixIcon,
+            prefixStyle: const TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
             suffixIcon: suffixIcon,
             label: Text(label, style: const TextStyle(color: Colors.black, fontSize: 16)),
             labelStyle: const TextStyle(color: Colors.black),
@@ -47,19 +50,15 @@ class CustomInputs {
     );
   }
 
-  static Widget search({
-    Color background = const Color(0xFFE7E5E4),
-    required IconButton? prefixIcon,
-    required String label,
-    required TextEditingController controller,
-  }) {
+  static Widget search({Color background = const Color(0xFFE7E5E4), required IconButton? prefixIcon, required String label, required TextEditingController textController, required Function(String text) onChangedInput}) {
     return Column(
       children: [
         TextFormField(
-          controller: controller,
+          controller: textController,
           keyboardType: TextInputType.text,
           cursorColor: Colors.black,
           style: const TextStyle(color: Colors.black, fontSize: 16),
+          onChanged: (e) => onChangedInput(e),
           decoration: InputDecoration(
             floatingLabelBehavior: FloatingLabelBehavior.never,
             prefixIcon: prefixIcon,

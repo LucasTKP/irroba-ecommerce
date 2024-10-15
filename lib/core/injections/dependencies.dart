@@ -53,7 +53,7 @@ Future<bool> setupDependencies(BuildContext context) async {
   Dependencies.instance.add<UsersRepository>(UsersRepositoryImpl(service: userService));
 
   final cartService = CartServiceImpl(dio: dioConfig.dio);
-  final cartRepository = CartRepositoryImpl(service: cartService);
+  final cartRepository = CartRepositoryImpl(service: cartService, productsRepository: Dependencies.instance.get<ProductsRepository>());
   final cartController = CartControllerImpl(cartRepository: cartRepository);
   Dependencies.instance.add<CartController>(cartController);
 

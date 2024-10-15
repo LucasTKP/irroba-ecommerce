@@ -34,7 +34,7 @@ Widget boxOptionMenu({
         Container(
           decoration: BoxDecoration(
             color: theme?.primary,
-            borderRadius: BorderRadius.all(Radius.circular(100)),
+            borderRadius: const BorderRadius.all(Radius.circular(100)),
           ),
           padding: const EdgeInsets.all(12),
           child: const Icon(

@@ -8,9 +8,11 @@ import 'package:irroba/interfaces/widgets/inputs.dart';
 
 class HomeScreen extends StatelessWidget {
   final HomeController controller;
-  const HomeScreen({super.key, required this.controller});
+  final void Function(String message, Color color) onSnackBarService;
+  const HomeScreen({super.key, required this.controller, required this.onSnackBarService});
 
   @override
+
   Widget build(BuildContext context) {
     final theme = Theme.of(context).extension<CustomTheme>();
     final products = controller.filterProducts();
@@ -32,7 +34,8 @@ class HomeScreen extends StatelessWidget {
                     icon: const Icon(Icons.search),
                   ),
                   label: 'Pesquisar Produto',
-                  controller: controller.searchController,
+                  textController: controller.searchController,
+                  onChangedInput: (e) => controller.onChangeSearch(e),
                 ),
               ),
               const SizedBox(width: 10),
@@ -97,11 +100,18 @@ class HomeScreen extends StatelessWidget {
                   itemCount: products.length,
                   itemBuilder: (context, index) {
                     final product = products[index];
+                    if (controller.searchController.text.isNotEmpty) {
+                      if (!product.title.toLowerCase().startsWith(controller.searchController.text.toLowerCase())) {
+                        return Container();
+                      }
+                    }
                     return BoxProduct.standard(
                       imageUrl: product.image,
                       title: product.title,
                       price: product.price,
-                      onAdd: () {},
+                      onAdd: () {
+                        onSnackBarService('Adicionado ao carrinho', Colors.green);
+                      },
                       backgroundButton: theme?.primary ?? Colors.red,
                     );
                   },

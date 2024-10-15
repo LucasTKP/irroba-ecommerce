@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:irroba/core/controllers/cart_controller.dart';
 import 'package:irroba/core/models/async_state.dart';
 import 'package:irroba/core/models/category.dart';
 import 'package:irroba/core/models/product.dart';
@@ -19,6 +20,7 @@ abstract class HomeController extends ChangeNotifier {
   Future<void> getAllProducts();
   Future<void> getAllCategories();
   List<ProductModel> filterProducts();
+  onChangeSearch(String text);
   void onTapSearch();
 
   void setProducts(List<ProductModel> products);
@@ -31,8 +33,17 @@ class HomeControllerImpl extends HomeController {
   final ProductsRepository productsRepository;
   final CategoriesRepository categoriesRepository;
   final Function(String message, Color color) onSnackBarService;
-  HomeControllerImpl({required this.productsRepository, required this.onSnackBarService, required this.categoriesRepository}) {
+  final CartController cartController;
+  HomeControllerImpl({
+    required this.productsRepository,
+    required this.onSnackBarService,
+    required this.categoriesRepository,
+    required this.cartController,
+  }) {
     init();
+    cartController.addListener(() {
+      notifyListeners();
+    });
   }
 
   @override
@@ -79,6 +90,11 @@ class HomeControllerImpl extends HomeController {
     }
 
     return productsFiltered;
+  }
+
+  @override
+  void onChangeSearch(String text) {
+    notifyListeners();
   }
 
   @override
