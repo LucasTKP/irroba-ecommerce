@@ -19,7 +19,9 @@ Isso fez o aplicativo ficar mais estático
 
 ### ⚙️ Termos Técnicos:
 A aplicação foi estruturada utilizando a arquitetura MVC (Model, Views, Controllers) para organizar melhor o projeto. Para desacoplar responsabilidades, todas as conversões de dados aconteceram na camada `repositories` e todas as chamadas de API foram centralizadas na camada `services`.  
-Desenvolvi o projeto utilizando a versão 3.24.1 do Flutter e realizei testes exclusivamente em dispositivos Android, uma vez que não disponho de um MacBook para emulação no iOS. Algumas configurações nativas, como a integração com a biblioteca de localização para obter a posição do usuário, foram configuradas apenas para o sistema operacional Android.  
+Desenvolvi o projeto utilizando a versão 3.24.1 do Flutter e realizei testes exclusivamente em dispositivos Android, uma vez que não disponho de um MacBook para emulação no iOS. Algumas configurações nativas, como a integração com a biblioteca de localização para obter a posição do usuário, foram configuradas apenas para o sistema operacional Android.    
+Utilizei o `ChangeNotifier` como gerenciador de estado. Gosto dele, pois é um gerenciador nativo e não senti a necessidade de utilizar outro.  
+Para Injetar as dependências criei `manualmente`, pois gosto de usar esta abordagem para demonstrar que sei o que acontece por trás de um gerenciador de dependencias, mas poderia ter utilizado o `GetIt` ou qualquer outra biblioteca.
 
 <br /> <br />
 
@@ -32,7 +34,7 @@ Agora é só selecionar o celular android que será emulado e rodar `flutter run
 
 <br /> <br />
 
-Ative o audio do vídeo para escutar minhas explicações
+Ative o audio do vídeo!
 
 
 
