@@ -64,7 +64,8 @@ class RegisterProductScreen extends StatelessWidget {
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*')),
               ],
-              prefixIcon: const Icon(Icons.attach_money),
+              prefixIcon: null,
+              prefixText: 'R\$'
             ),
             const SizedBox(height: 20),
             CustomInputs.standard(
