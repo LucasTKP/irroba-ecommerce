@@ -7,7 +7,8 @@ import 'package:irroba/interfaces/cart/widgets/remove_product_confirm_dialog.dar
 
 class CartScreen extends StatelessWidget {
   final CartScreenController controller;
-  const CartScreen({super.key, required this.controller});
+  final Function({required String message, required Color color}) onSnackBarService;
+  const CartScreen({super.key, required this.controller, required this.onSnackBarService});
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +72,10 @@ class CartScreen extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              onSnackBarService(message: 'Compra realizada com sucesso', color: Colors.green);
+              Navigator.pop(context);
+            },
             style: ElevatedButton.styleFrom(
               backgroundColor: theme?.primary ?? Colors.red,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),

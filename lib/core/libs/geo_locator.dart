@@ -8,7 +8,7 @@ Future<GeoModel> getLagLong() async {
   LocationPermission permission = await Geolocator.checkPermission();
 
   if (permission == LocationPermission.denied || permission == LocationPermission.deniedForever) {
-    // Solicite a permissão se ainda não foi concedida
+    // Solicita a permissão se ainda não foi concedida
     permission = await Geolocator.requestPermission();
     if (permission == LocationPermission.denied || permission == LocationPermission.deniedForever) {
       log('Location permissions are denied');

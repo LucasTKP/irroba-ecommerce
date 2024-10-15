@@ -1,6 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:intl/intl.dart';
-
 import 'package:irroba/core/models/product.dart';
 
 class CartModel {
@@ -29,11 +27,16 @@ class CartModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['userId'] = userId;
-    data['date'] = date;
-    data['products'] = '';
+    final DateFormat inputFormat = DateFormat('dd/MM/yyyy');
+    final DateFormat outputFormat = DateFormat('yyyy/MM/dd');
+    final String formattedDate = outputFormat.format(inputFormat.parse(date));
+    final Map<String, dynamic> data = <String, dynamic>{
+      'id': id,
+      'userId': userId,
+      'date': formattedDate,
+      'products': products.map((element) => {"productId": element.id, "quantity": element.quantity}).toList()
+    };
+
     return data;
   }
 

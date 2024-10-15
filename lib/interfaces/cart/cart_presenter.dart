@@ -77,7 +77,7 @@ class _CartPresenterState extends State<CartPresenter> {
             });
           }
 
-          return CartScreen(controller: controller);
+          return CartScreen(controller: controller, onSnackBarService: onSnackBarService);
         },
       ),
     );
