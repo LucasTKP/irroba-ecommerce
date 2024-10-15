@@ -14,7 +14,7 @@ abstract class CartController extends ChangeNotifier {
 }
 
 class CartControllerImpl extends CartController {
-  final CartRepositoryImpl cartRepository;
+  final CartRepository cartRepository;
 
   CartControllerImpl({required this.cartRepository}){
     getCart();
