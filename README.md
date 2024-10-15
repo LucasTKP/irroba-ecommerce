@@ -36,4 +36,8 @@ Ative o audio do vídeo para escutar minhas explicações
 
 
 
+https://github.com/user-attachments/assets/79c0e33a-1f36-4f9a-827e-785a3af219f8
+
+
+
 <br />
