@@ -47,14 +47,14 @@ class _HomePresenterState extends State<HomePresenter> with RouteAware {
 
     final ModalRoute? modalRoute = ModalRoute.of(context);
     if (modalRoute is PageRoute) {
-      //RouteAware registration with RouteObserver so that HomePage can be notified of route changes.
+      //Fica observando o status desta pagina
       routeObserver.subscribe(this, modalRoute);
     }
   }
 
   @override
   void didPopNext() {
-    //Executed on return to home.
+    //Executa ao voltar para o home
     controller.init();
   }
 
